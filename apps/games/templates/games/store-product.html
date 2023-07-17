@@ -135,7 +135,7 @@
                     </div>
                     <div class="col-md-6">
 
-                        <h2 class="nk-product-title h3">Just then her head </h2>
+                        <h2 class="nk-product-title h3">{{ igor.name }} </h2>
 
                         <select class="form-control">
                             <option value="" disabled selected>Select Platform</option>
@@ -151,7 +151,7 @@
                         <!-- START: Add to Cart -->
                         <div class="nk-gap-2"></div>
                         <form action="#" class="nk-product-addtocart">
-                            <div class="nk-product-price">$ 32.00</div>
+                            <div class="nk-product-price">$ {{ igor.price }}</div>
                             <div class="nk-gap-1"></div>
                             <div class="input-group">
                                 <input type="number" class="form-control" value="1" min="1" max="21">
@@ -160,12 +160,6 @@
                         </form>
                         <div class="nk-gap-3"></div>
                         <!-- END: Add to Cart -->
-
-                        <!-- START: Meta -->
-                        <div class="nk-product-meta">
-                            <div><strong>Categories</strong>: <a href="#">online</a>, <a href="#">FPS</a>, <a href="#">MMO</a>, <a href="#">Action games</a></div>
-                        </div>
-                        <!-- END: Meta -->
                     </div>
                 </div>
 
@@ -190,7 +184,7 @@
                         <!-- START: Tab Description -->
                         <div role="tabpanel" class="tab-pane fade show active" id="tab-description">
                             <div class="nk-gap"></div>
-                            <strong class="text-white">Release Date: 24/05/2018</strong>
+                            <strong class="text-white">Release Date: {{ igor.datetime_created }}</strong>
                             <div class="nk-gap"></div>
                             <p>She gave my mother such a turn, that I have always been convinced I am indebted to Miss Betsey for having been born on a Friday.	The word was appropriate to the moment. My mother was so much worse that Peggotty, coming in with the teaboard and candles, and seeing at a glance how ill she was, - as Miss Betsey might have done sooner if there had been light enough, - conveyed her upstairs to her own room with all speed; and immediately dispatched Ham Peggotty, her nephew, who had been for some days past secreted in the house, unknown to my mother, as a special messenger in case of emergency, to fetch the nurse and doctor.</p>
 
@@ -345,16 +339,9 @@
     <h4 class="nk-widget-title"><span><span class="text-main-1">Category</span> Menu</span></h4>
     <div class="nk-widget-content">
         <ul class="nk-widget-categories">
-            <li><a href="#">RTS</a></li>
-            <li><a href="#">Action</a></li>
-            <li><a href="#">RPG</a></li>
-            <li><a href="#">MMO</a></li>
-            <li><a href="#">MOBA</a></li>
-            <li><a href="#">Adventure</a></li>
-            <li><a href="#">Indie</a></li>
-            <li><a href="#">Strategy</a></li>
-            <li><a href="#">Racing</a></li>
-            <li><a href="#">Simulator</a></li>
+            {% for genre in igor.genres.all %}
+            <li><a href="#">{{ genre.name }}</a></li>
+            {% endfor %}
         </ul>
     </div>
 </div>

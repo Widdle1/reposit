@@ -75,6 +75,32 @@
 	<!-- header section end -->
   <!-- video section start -->
   <main>
+    <form action="/games/list/" class="card" method="post">
+      {% csrf_token %}
+      <div class="form__content">
+        <h1 class="title">Create new game!</h1>
+        <div class="inputs">
+          <div class="main__info">
+            <input type="text" placeholder="Name" name="name" id="name">
+            <input type="text" placeholder="Price" name="price" id="price">
+            <input type="date" placeholder="Datetime" name="datetime_created" id="datetime_created">
+            <input type="text" placeholder="Company" name="company" id="company">
+          </div>
+          <div class="genres__chouse">
+            {% for g in genres %}
+            <div class="genre__item">
+              <input type="checkbox" name="genre_{{ g.id }}" id="{{ g.name }}">
+              <label for="horror">{{ g.name }}</label>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="btn__and__errors">
+            <div class="errors"></div>
+            <input type="submit" value="Create" class="sbt">
+          </div>
+        </div>
+      </div>
+    </form>
     {% for game in games %}
     <a href="/games/list/{{ game.pk }}" class="aa">
     <div class="card">
