@@ -1,5 +1,5 @@
 # Django
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
 from django.db.models.query import QuerySet
@@ -8,6 +8,9 @@ from django.views import View
 
 # Local
 from .models import Game, Genre, Company, Comment, User
+
+#Other
+import datetime
 
 
 class MainView(View):
@@ -70,9 +73,7 @@ class GameView(View):
     def get(self, request: HttpRequest, game_id: int) -> HttpResponse:
         try:
             game: Game = Game.objects.get(id=game_id)
-            comments: Comment = game.game_comments
-            genres: QuerySet[Genre] = Comment.objects.all()
-            print(genres)
+            comments: Comment = game.game_comments.all()
         except Game.DoesNotExist as e:
             return HttpResponse(
                 f'<h1>Игры с id {game_id} не существует!</h1>'
@@ -82,7 +83,8 @@ class GameView(View):
             template_name='games/store-product.html',
             context={
                 'igor': game,
-                'comments': comments
+                'comments': comments,
+                'sum_comments': len(comments) 
             }
     )
 
@@ -93,12 +95,13 @@ class GameView(View):
             user=User.objects.all()[0],
             text=data.get('text'),
             rate=float(data.get('rate')),
+            datetime_created=datetime.datetime.now(),
             game=game
         )
         comment.save()
-        breakpoint()
 
-        return HttpResponse("Hello!")
+        return redirect(f"/games/list/{game_id}")
+    
 
 def about(request: HttpRequest) -> HttpResponse:
     template_name: str = 'games/about.html'

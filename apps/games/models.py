@@ -97,6 +97,11 @@ class Comment(models.Model):
     rate = models.IntegerField(
         verbose_name='рейтинг',
     )
+    datetime_created = models.DateTimeField(
+        verbose_name='дата создания',
+        null=True,
+        blank=True
+    )
     game = models.ForeignKey(
         verbose_name='игра',
         related_name='game_comments',
