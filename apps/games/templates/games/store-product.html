@@ -220,54 +220,24 @@
                         <!-- END: Tab Description -->
 
                         <!-- START: Tab Reviews -->
-                        <div role="tabpanel" class="tab-pane fade" id="tab-reviews">
+                        <div role="tabpanel" class="tab-pane fade" id="tab-reviews"> 
                             <div class="nk-gap-2"></div>
                             <!-- START: Reply -->
                             <h3 class="h4">Add a Review</h3>
                             <div class="nk-reply">
-                                <form action="#" class="nk-form">
+                                <form action="/games/list/{{ igor.pk }}/" class="nk-form" method="post">
+                                    {% csrf_token %}
                                     <div class="row vertical-gap sm-gap">
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control required" name="name" placeholder="Name *">
+                                            <input type="text" class="form-control required" name="user" placeholder="Name *">
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control required" name="title" placeholder="Title *">
+                                            <input type="text" class="form-control required" name="rate" placeholder="Rating(1-10) *">
                                         </div>
                                     </div>
                                     <div class="nk-gap-1"></div>
-                                    <textarea class="form-control required" name="message" rows="5" placeholder="Your Review *" aria-required="true"></textarea>
+                                    <textarea class="form-control required" name="text" rows="5" placeholder="Your text"></textarea>
                                     <div class="nk-gap-1"></div>
-                                    <div class="nk-rating">
-                                        <input type="radio" id="review-rate-5" name="review-rate" value="5">
-                                        <label for="review-rate-5">
-                                            <span><i class="far fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                        </label>
-
-                                        <input type="radio" id="review-rate-4" name="review-rate" value="4">
-                                        <label for="review-rate-4">
-                                            <span><i class="far fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                        </label>
-
-                                        <input type="radio" id="review-rate-3" name="review-rate" value="3">
-                                        <label for="review-rate-3">
-                                            <span><i class="far fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                        </label>
-
-                                        <input type="radio" id="review-rate-2" name="review-rate" value="2">
-                                        <label for="review-rate-2">
-                                            <span><i class="far fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                        </label>
-
-                                        <input type="radio" id="review-rate-1" name="review-rate" value="1">
-                                        <label for="review-rate-1">
-                                            <span><i class="far fa-star"></i></span>
-                                            <span><i class="fa fa-star"></i></span>
-                                        </label>
-                                    </div>
                                     <button class="nk-btn nk-btn-rounded nk-btn-color-dark-3 float-right">Submit</button>
                                 </form>
                             </div>
@@ -277,39 +247,21 @@
                             <div class="nk-gap-2"></div>
                             <div class="nk-comments">
                                 <!-- START: Review -->
+                                {% for comment in comments %}
                                 <div class="nk-comment">
                                     <div class="nk-comment-meta">
-                                        <img src="/static/images/avatar-2.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="#">Witch Murder</a> in 20 September, 2018
-                                        <div class="nk-review-rating" data-rating="4.5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="far fa-star"></i></div>
+                                        <img src="/static/images/avatar-2.jpg" alt="Witch Murder" class="rounded-circle" width="35"> by <a href="#">{{ comment.user.name }}</a> in 20 September, 2018
+                                        <div class="nk-review-rating" data-rating="4.5">{{ comment.rate }}</div>
                                     </div>
                                     <div class="nk-comment-text">
-                                        <p>Upon replenish great rule. Were tree, given day him night Fruit it moveth all. First they're creature seasons and creature fill a it have fifth, their own subdue brought above divided.</p>
-
-                                        <p>Behold it set, seas seas and meat divided Moveth cattle forth evening above moveth so, signs god a fruitful his after called that whose.</p>
+                                        <p>{{ comment.text }}</p>
                                     </div>
                                 </div>
+                                {% endfor %}
                                 <!-- END: Review -->
                                 <!-- START: Review -->
-                                <div class="nk-comment">
-                                    <div class="nk-comment-meta">
-                                        <img src="/static/images/avatar-1.jpg" alt="Hitman" class="rounded-circle" width="35"> by <a href="#">Hitman</a> in 14 Jule, 2018
-                                        <div class="nk-review-rating" data-rating="0.5"> <i class="fa fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i> <i class="far fa-star"></i></div>
-                                    </div>
-                                    <div class="nk-comment-text">
-                                        <p> I was awakened at daybreak by the charwoman, and having arrived at the inn, was at first placed inside the coach. :(</p>
-                                    </div>
-                                </div>
                                 <!-- END: Review -->
                                 <!-- START: Review -->
-                                <div class="nk-comment">
-                                    <div class="nk-comment-meta">
-                                        <img src="/static/images/avatar-3.jpg" alt="Wolfenstein" class="rounded-circle" width="35"> by <a href="#">Wolfenstein</a> in 27 June, 2018
-                                        <div class="nk-review-rating" data-rating="3.5"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i></div>
-                                    </div>
-                                    <div class="nk-comment-text">
-                                        <p>Divided thing, land it evening earth winged whose great after. Were grass night. To Air itself saw bring fly fowl. Fly years behold spirit day greater of wherein winged and form. Seed open don't thing midst created dry every greater divided of, be man is. Second Bring stars fourth gathering he hath face morning fill. Living so second darkness. Moveth were male. May creepeth. Be tree fourth.</p>
-                                    </div>
-                                </div>
                                 <!-- END: Review -->
                             </div>
                         </div>
@@ -495,60 +447,60 @@
 <!-- START: Scripts -->
 
 <!-- Object Fit Polyfill -->
-<!-- <script src="/static/vendor/object-fit-images/dist/ofi.min.js"></script> -->
+<script src="/static/vendor/object-fit-images/dist/ofi.min.js"></script>
 
 <!-- GSAP -->
-<!-- <script src="/static/vendor/gsap/src/minified/TweenMax.min.js"></script>
-<script src="/static/vendor/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script> -->
+<script src="/static/vendor/gsap/src/minified/TweenMax.min.js"></script>
+<script src="/static/vendor/gsap/src/minified/plugins/ScrollToPlugin.min.js"></script>
 
 <!-- Popper -->
-<!-- <script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script> -->
+<script src="/static/vendor/popper.js/dist/umd/popper.min.js"></script>
 
 <!-- Bootstrap -->
-<!-- <script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script> -->
+<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <!-- Sticky Kit -->
-<!-- <script src="/static/vendor/sticky-kit/dist/sticky-kit.min.js"></script> -->
+<script src="/static/vendor/sticky-kit/dist/sticky-kit.min.js"></script>
 
 <!-- Jarallax -->
-<!-- <script src="/static/vendor/jarallax/dist/jarallax.min.js"></script>
-<script src="/static/vendor/jarallax/dist/jarallax-video.min.js"></script> -->
+<script src="/static/vendor/jarallax/dist/jarallax.min.js"></script>
+<script src="/static/vendor/jarallax/dist/jarallax-video.min.js"></script>
 
 <!-- imagesLoaded -->
-<!-- <script src="/static/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script> -->
+<script src="/static/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
 
 <!-- Flickity -->
-<!-- <script src="/static/vendor/flickity/dist/flickity.pkgd.min.js"></script> -->
+<script src="/static/vendor/flickity/dist/flickity.pkgd.min.js"></script>
 
 <!-- Photoswipe -->
 <script src="/static/vendor/photoswipe/dist/photoswipe.min.js"></script>
 <script src="/static/vendor/photoswipe/dist/photoswipe-ui-default.min.js"></script>
 
 <!-- Jquery Validation -->
-<!-- <script src="/static/vendor/jquery-validation/dist/jquery.validate.min.js"></script> -->
+<script src="/static/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 
 <!-- Jquery Countdown + Moment -->
-<!-- <script src="/static/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
+<script src="/static/vendor/jquery-countdown/dist/jquery.countdown.min.js"></script>
 <script src="/static/vendor/moment/min/moment.min.js"></script>
-<script src="/static/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script> -->
+<script src="/static/vendor/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
 
 <!-- Hammer.js -->
-<!-- <script src="/static/vendor/hammerjs/hammer.min.js"></script> -->
+<script src="/static/vendor/hammerjs/hammer.min.js"></script>
 
 <!-- NanoSroller -->
-<!-- <script src="/static/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script> -->
+<script src="/static/vendor/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
 
 <!-- SoundManager2 -->
-<!-- <script src="/static/vendor/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script> -->
+<script src="/static/vendor/soundmanager2/script/soundmanager2-nodebug-jsmin.js"></script>
 
 <!-- Seiyria Bootstrap Slider -->
-<!-- <script src="/static/vendor/bootstrap-slider/dist/bootstrap-slider.min.js"></script> -->
+<script src="/static/vendor/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
 
 <!-- Summernote -->
-<!-- <script src="/static/vendor/summernote/dist/summernote-bs4.min.js"></script> -->
+<script src="/static/vendor/summernote/dist/summernote-bs4.min.js"></script>
 
 <!-- nK Share -->
-<!-- <script src="assets/plugins/nk-share/nk-share.js"></script> -->
+<script src="assets/plugins/nk-share/nk-share.js"></script>
 
 <!-- GoodGames -->
 <script src="/static/js/goodgames.min.js"></script>
