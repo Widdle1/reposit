@@ -1,3 +1,6 @@
+#Pythin
+import uuid
+
 # Django
 from django.shortcuts import render, redirect
 from django.http.request import HttpRequest
@@ -5,7 +8,7 @@ from django.http.response import HttpResponse
 from django.db.models.query import QuerySet
 from django.db.models.functions import Lower
 from django.views import View
-
+from django.core.files.uploadedfile import InMemoryUploadedFile
 # Local
 from .models import Game, Genre, Company, Comment, User
 
@@ -40,6 +43,13 @@ class GameListView(View):
     
     def post(self, request: HttpRequest) -> HttpResponse:
         data: dict = request.POST
+        files: dict = request.FILES
+        
+        image: InMemoryUploadedFile = None
+        if files != {}:
+            image = files.get('main_imgor')
+            
+        
         try:
             company: Company = Company.objects.annotate(
                 lower_name=Lower('name')
@@ -54,7 +64,8 @@ class GameListView(View):
             name=data.get('name'),
             price=float(data.get('price')),
             datetime_created=data.get('datetime_created'),
-            company=company
+            company=company,
+            main_imgor=image
         )
 
         key: str
@@ -66,7 +77,7 @@ class GameListView(View):
                 game.genres.add(genre)
         game.save()
 
-        return HttpResponse("Hello!")
+        return redirect("/games/list/")
 
 
 class GameView(View):
