@@ -100,7 +100,6 @@ class GameView(View):
             print(game.main_imgor, '123123')
             comments: Comment = game.game_comments.all()
             screens: ImagesDB = game.images_of_games.all()
-            print(screens[0])
         except Game.DoesNotExist as e:
             return HttpResponse(
                 f'<h1>Игры с id {game_id} не существует!</h1>'

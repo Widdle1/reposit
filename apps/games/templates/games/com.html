@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Магазин Steam</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    header {
+        background-color: #171a21;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+    }
+    
+    nav ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        background-color: #333;
+        overflow: hidden;
+    }
+    
+    nav ul li {
+        float: left;
+    }
+    
+    nav ul li a {
+        display: block;
+        color: #fff;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    
+    nav ul li a:hover {
+        background-color: #111;
+    }
+    
+    section {
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+      }
+    
+    .game {
+        display: inline-block;
+        margin: 10px;
+        width: 200px;
+        text-align: center;
+    }
+    
+    .game img {
+        width: 100%;
+        height: auto;
+    }
+    
+    footer {
+        background-color: #171a21;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    
+    a {
+        color: #0078d7;
+        text-decoration: none;
+    }
+    
+    a:hover {
+        text-decoration: underline;
+    }
+    
+    a:visited {
+        color: #663399;
+    }
+    
+    @media (max-width: 768px) {
+        .game {
+        width: 100%;
+        }}
+    
+    .coms {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        margin-bottom: 20px;
+        border-top: 1px grey dotted;
+        padding-top: 20px;
+    }
+        
+
+    .com {
+        align-self: center;
+        width: 400px;
+        height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 2px black solid;
+        border-radius: 10px;
+    }
+        
+    .head-com {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .main-com {
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .main-com span {
+        align-self: center;
+    }
+
+    .head-1{
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .head-1 span {
+        align-self: center;
+    }
+
+    input {
+        text-align: center;
+        width: 60px;
+        height: 20px;
+    }
+    textarea {
+        width: 200px;
+        height: 20px;
+    }
+
+    .crt center {
+        float: left;
+    }
+
+    .crt-main {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        margin-bottom: 20px;
+        border-top: 1px grey dotted;
+        padding-top: 20px;
+    }
+
+    .crt {
+        align-self: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        float: left;
+    }
+
+    .but {
+        height: 25px;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Добро пожаловать в магазин Steam 
+    <img style="max-width: 100px" src="https://img.icons8.com/?size=2x&id=XLYyiimvk3fV&format=png" alt=""></h1>
+  </header>
+
+  <section>
+    <div class="game">
+      <img src="https://s3.ap-southeast-1.amazonaws.com/cdn.vcgamers.com/news/wp-content/uploads/2023/01/tanggal-rilis-GTA-6.jpg" alt="">
+      <h3>{{ games.name }}</h3>
+      <p>{{ games.company }}</p>
+      <a href="#">{{ games.price }}</a>
+    </div>
+    
+  </section>
+
+<div class="crt-main">
+    <form action="" method="post" class="crt">
+        <input 
+            type="number" 
+            name="rate" 
+            id="rate" 
+            placeholder="rate 0-5"
+        >
+        <textarea
+            type="text" 
+            name="text" 
+            id="text"
+            placeholder="text"
+        ></textarea>
+        <input
+            type="submit" 
+            value="Add"
+            class="but"
+        >
+        </form>
+</div>
+  
+
+  <div class="coms">
+    <div class="com">
+        <div class="head-com">
+            <div class="head-1"><span>user1</span></div>
+            <div class="head-1"><span>5/5</span></div>
+        </div>
+        <div class="main-com"> 
+            <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure vero minima autem ullam cumque. Illo dignissimos distinctio minima dolores excepturi ratione et culpa aliquid nisi, consequuntur libero, consequatur nihil perferendis?
+            </span>
+        </div>
+    </div>
+</div>
+  <footer>
+    <p>&copy; 2023 Магазин Steam. Все права НЕ защищены.</p>
+  </footer>
+</body>
+</html>
