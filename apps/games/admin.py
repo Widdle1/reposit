@@ -3,7 +3,7 @@ from django.contrib import admin
 from typing import Union , Type
 # Register your models here.
 
-from .models import Game, Genre, Company, Comment , WishList , Order , InviteCard
+from .models import Game, Genre, Company, Comment , WishList , Order , InviteCard, ImagesDB
 
 MyType: Type = tuple[tuple[Union[str ,dict[str,list[str]]]]]
 
@@ -26,7 +26,8 @@ class GameAdmin(admin.ModelAdmin):
                 'fields':[
                     'name',
                     'price',
-                    'genres'
+                    'genres',
+                    'main_imgor'
                 ]
             }
         ),
@@ -45,6 +46,42 @@ class GameAdmin(admin.ModelAdmin):
     readonly_fields:list[str] = [
         'datetime_created'
     ]
+
+    def get_readonly_fields(
+        self, request , obj =...)-> list[str]:
+        if obj is not None:
+            return self.readonly_fields
+        return []
+    
+class ScreensAdmin(admin.ModelAdmin):
+
+    list_display:list[str] = (
+        'game',
+    )
+
+    list_filter: list[str] = (
+        'game',
+    )
+    fieldsets: MyType = (
+        (
+            'Public for my game shop!',
+            {
+                'classes':['wide','extrapretty'],
+                'fields':[
+                    'game'
+                ]
+            }
+        ),
+        (
+            'Private information',
+            {
+                'classes':['collapse'],
+                'fields':[
+                    'screens'
+                ]
+            }
+        ),
+    )
 
     def get_readonly_fields(
         self, request , obj =...)-> list[str]:
@@ -109,4 +146,5 @@ admin.site.register(Comment, CommentsAdmin)
 admin.site.register(WishList, WhishListAdmin)
 admin.site.register(Order, OrderAdmin)
 admin.site.register(InviteCard, InviteCardAdmin)
+admin.site.register(ImagesDB, ScreensAdmin)
 

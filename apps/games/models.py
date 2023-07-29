@@ -70,6 +70,11 @@ class Game(models.Model):
         to=Genre,
         related_name='games'
     )
+    main_imgor = models.ImageField(
+        verbose_name="изображение",
+        upload_to='games/',
+        default='games/unknown.png'
+    )
 
     class Meta:
         ordering = ('price', 'name')
@@ -78,6 +83,25 @@ class Game(models.Model):
 
     def __str__(self) -> str:
         return f'{self.company} | {self.name} | {self.price}$'
+    
+
+class ImagesDB(models.Model):
+    """many images for games"""
+
+    game = models.ForeignKey(
+        verbose_name='игра',
+        related_name='images_of_games',
+        to=Game,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
+
+    screens = models.ImageField(
+        verbose_name="изображение",
+        upload_to='games/',
+        default='games/unknown.png'
+    )
 
 
 class Comment(models.Model):
